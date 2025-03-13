@@ -29,7 +29,7 @@
   });
 
 
-
+// Color Words transition
 
   document.addEventListener('DOMContentLoaded', function() {
     // Obtén todas las palabras con la clase "color-change"
@@ -88,17 +88,37 @@
 
 // News change size image
 
-var swiper = new Swiper('.mySwiper', {
-  spaceBetween: 30,  // Espaciado entre slides
-  slidesPerView: 3.5, // Valor predeterminado para pantallas grandes
-  freeMode: true, // Habilitar el scroll libre
-  centeredSlides: true, // Asegurarse de que los slides se centren en el contenedor
-  breakpoints: {
-    450: {
-      slidesPerView: 'auto', // Ajusta el número de slides por vista en móviles
-    }
+// Función para cambiar dinámicamente el slides-per-view
+function updateSlidesPerView() {
+  var swiperContainer = document.querySelector('.mySwiper');
+  
+  // Verificar el tamaño de la pantalla
+  if (window.innerWidth <= 450) {
+    // Cambiar el valor de slides-per-view a 'auto' en pantallas pequeñas
+    swiperContainer.setAttribute('slides-per-view', 'auto');
+  } else {
+    // Establecer el valor de slides-per-view a 3.5 en pantallas grandes
+    swiperContainer.setAttribute('slides-per-view', '3.5');
   }
-});
+  
+  // Inicializar Swiper después de cambiar el atributo
+  if (swiper) {
+    swiper.destroy(true, true); // Destruir la instancia anterior
+  }
+
+  swiper = new Swiper('.mySwiper', {
+    spaceBetween: 30, // Espaciado entre slides
+    slidesPerView: swiperContainer.getAttribute('slides-per-view'), // Aplicar el atributo actualizado
+    freeMode: true, // Modo libre de desplazamiento
+    centeredSlides: true, // Centrado de los slides
+  });
+}
+
+// Llamar a la función al cargar la página
+updateSlidesPerView();
+
+// Llamar a la función cuando se redimensiona la ventana
+window.addEventListener('resize', updateSlidesPerView);
 
 
 

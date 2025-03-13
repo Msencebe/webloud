@@ -41,7 +41,7 @@ function sel(e) {
 
 
  
-
+/** 
 function trans() {
   // JavaScript para controlar la transición de color del título
   const title = document.getElementById('title1');
@@ -70,7 +70,7 @@ function trans2() {
 }
 
 trans();
-
+***/
 
 
 // Home page change image

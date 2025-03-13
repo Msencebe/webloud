@@ -118,3 +118,15 @@ function restartrotate() {
 	r = setInterval(rotate, 500);
 }
 
+// News change size image
+
+var swiper = new Swiper('.mySwiper', {
+  spaceBetween: 30,
+  slidesPerView: 3.5,
+  breakpoints: {
+    450: {
+      slidesPerView: 'auto', // Cambia a "auto" para pantallas de 450px o menos
+    }
+  }
+});
+

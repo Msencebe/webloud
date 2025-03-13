@@ -89,11 +89,13 @@
 // News change size image
 
 var swiper = new Swiper('.mySwiper', {
-  spaceBetween: 30,
-  slidesPerView: 3.5,
+  spaceBetween: 30,  // Espaciado entre slides
+  slidesPerView: 3.5, // Valor predeterminado para pantallas grandes
+  freeMode: true, // Habilitar el scroll libre
+  centeredSlides: true, // Asegurarse de que los slides se centren en el contenedor
   breakpoints: {
     450: {
-      slidesPerView: 'auto', // Cambia a "auto" para pantallas de 450px o menos
+      slidesPerView: 'auto', // Ajusta el número de slides por vista en móviles
     }
   }
 });

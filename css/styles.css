@@ -735,6 +735,8 @@ transition: 1s all;
 }
 
 
+
+
 /* Realised by */
 
 .really{
@@ -939,6 +941,32 @@ width: 90%;
   .desktop-only{
     display: none;
   }
+
+  swiper-container {
+    width: 100%; /* Se expande completamente en móvil */
+  }
+
+  swiper-slide {
+    width: 80% !important; /* Asegura que los slides no sean demasiado pequeños */
+    max-width: 250px; /* Controla el tamaño máximo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide img {
+    width: 100%; /* Asegura que la imagen llene el slide */
+    height: auto; /* Mantiene la proporción */
+    object-fit: cover; /* Evita deformaciones */
+  }
+
+
+
+
+
+
+
+  
 
   .really{
     border: 2px solid #ccc;

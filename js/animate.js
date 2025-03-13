@@ -88,37 +88,40 @@
 
 // News change size image
 
-// Función para cambiar dinámicamente el slides-per-view
-function updateSlidesPerView() {
-  var swiperContainer = document.querySelector('.mySwiper');
-  
-  // Verificar el tamaño de la pantalla
-  if (window.innerWidth <= 450) {
-    // Cambiar el valor de slides-per-view a 'auto' en pantallas pequeñas
-    swiperContainer.setAttribute('slides-per-view', 'auto');
-  } else {
-    // Establecer el valor de slides-per-view a 3.5 en pantallas grandes
-    swiperContainer.setAttribute('slides-per-view', '3.5');
+  // Inicializar Swiper fuera de la función de actualización
+  var swiper;
+
+  // Función para cambiar dinámicamente el slides-per-view
+  function updateSlidesPerView() {
+    var swiperContainer = document.querySelector('.mySwiper');
+    
+    // Verificar el tamaño de la pantalla y actualizar el atributo
+    if (window.innerWidth <= 450) {
+      swiperContainer.setAttribute('slides-per-view', 'auto');
+    } else {
+      swiperContainer.setAttribute('slides-per-view', '3.5');
+    }
+    
+    // Actualizar la instancia de Swiper si ya está inicializada
+    if (swiper) {
+      swiper.params.slidesPerView = swiperContainer.getAttribute('slides-per-view');  // Actualizar el parámetro
+      swiper.update(); // Asegúrate de actualizar Swiper para aplicar los cambios
+    } else {
+      // Si no existe una instancia de swiper, crea una nueva
+      swiper = new Swiper('.mySwiper', {
+        spaceBetween: 30, // Espaciado entre slides
+        slidesPerView: swiperContainer.getAttribute('slides-per-view'), // Aplicar el atributo actualizado
+        freeMode: true, // Modo libre de desplazamiento
+        centeredSlides: true, // Centrado de los slides
+      });
+    }
   }
-  
-  // Inicializar Swiper después de cambiar el atributo
-  if (swiper) {
-    swiper.destroy(true, true); // Destruir la instancia anterior
-  }
 
-  swiper = new Swiper('.mySwiper', {
-    spaceBetween: 30, // Espaciado entre slides
-    slidesPerView: swiperContainer.getAttribute('slides-per-view'), // Aplicar el atributo actualizado
-    freeMode: true, // Modo libre de desplazamiento
-    centeredSlides: true, // Centrado de los slides
-  });
-}
+  // Llamar a la función al cargar la página
+  document.addEventListener('DOMContentLoaded', updateSlidesPerView);
 
-// Llamar a la función al cargar la página
-updateSlidesPerView();
-
-// Llamar a la función cuando se redimensiona la ventana
-window.addEventListener('resize', updateSlidesPerView);
+  // Llamar a la función cuando se redimensiona la ventana
+  window.addEventListener('resize', updateSlidesPerView);
 
 
 
